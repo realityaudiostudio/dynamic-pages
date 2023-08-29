@@ -18,19 +18,18 @@ let path = location.pathname.split('/').pop();
 getDataFromFirestore(path);
 
 const processData = (data) => {
-    let loading = document.querySelector('.loading');
-    let imgEle = document.querySelector('.hero-img');
-    let nameEle = document.querySelector('.name');
-    let aboutEle = document.querySelector('.about');
-    let indexEle = document.querySelector('.index');
+    let imgEle = document.querySelector('.mnimg');
+    let nameEle = document.querySelector('.title');
+    let detailEle = document.querySelector('.detail');
+    let descriptionEle = document.querySelector('.description');
+    let audioEle = document.querySelector('.audio');
 
-    loading.style.display = 'none';
-    imgEle.src = `img/${data.image}`;
+    imgEle.style.backgroundImage = `url("${data.cvr}")`;
+    nameEle.innerHTML = data.title;
 
-    let name = data.name.split(' ');
 
-    nameEle.innerHTML = `<span style="color: #${data.color}">${name[0]}</span> ${name[1] || ' '}`;
+    detailEle.innerHTML = data.detail;
+    descriptionEle.innerHTML = data.description;
+    audioEle.src = `${data.audio}`;
 
-    aboutEle.innerHTML = data.about;
-    indexEle.innerHTML = data.id;
 }
